@@ -43,6 +43,7 @@ func (r *RedisCache) Get(ctx context.Context, key string, dst any) error {
 			if errors.Is(err, redis.Nil) {
 				return cache.ErrCacheNotFound
 			}
+			return err
 		}
 		return json.Unmarshal(data, dst)
 	}
